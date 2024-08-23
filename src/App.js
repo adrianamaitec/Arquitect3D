@@ -1,3 +1,4 @@
+import Sign_in from "./components/Sign in";
 
 function App() {
   return (
@@ -5,7 +6,7 @@ function App() {
       <header className="bg-white shadow-2xl shadow-secondary-900 p-6 rounded">
         <h1 className="text-3xl font-bold underline text-blue-900">
           <p>
-            {process.env.REACT_APP_SALUDO}
+            <Sign_in/>
           </p>
         </h1>
       </header>
