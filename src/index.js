@@ -1,29 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoginView from './Routes/LoginView';
-import DashboardView from './Routes/dashboardView';
-import SignUpView from './Routes/signOutView';
-import PublicProfileView from './Routes/publicProfileView';
-import ChooseUserNameView from './Routes/chooseUserNameView';
-import EditProfileView from './Routes/editProfileView';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import "@fortawesome/fontawesome-free/css/all.min.css";
+//import "./assets/styles/tailwind.css";
+import './assets/styles/index.css';
+
+// layouts
+import Admin from "./layouts/Admin.js";
+import Auth from "./layouts/Auth.js";
+
+// views without layouts
+import Landing from "./views/Landing.js";
+import Profile from "./views/Profile.js";
+
+// Crear la raíz del ReactDOM
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
-  <BrowserRouter >
-  <Routes>
-    <Route path="/" element={<App/>}/>
-    <Route path="Login" element={<LoginView />}/>
-    <Route path="dashboard" element={<DashboardView />}/>
-    <Route path="dashboard/profile" element={<EditProfileView />}/>
-    <Route path="signout" element={<SignUpView />}/>
-    <Route path="u/:username" element={<PublicProfileView />}/>
-    <Route path="choose-username" element={<ChooseUserNameView />}/>
-  </Routes>
+  <BrowserRouter>
+    <Routes>
+      {/* add routes with layouts */}
+      <Route path="/admin/*" element={<Admin />} />
+      <Route path="/auth/*" element={<Auth />} />
+      {/* add routes without layouts */}
+      <Route path="/landing" element={<Landing />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/" element={<Landing />} />
+      {/* add redirect for first page */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   </BrowserRouter>
-    
-  
 );
-
